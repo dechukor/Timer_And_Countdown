@@ -1,0 +1,15 @@
+.container {
+  position: relative;
+}
+
+.counterWrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.counterText {
+  margin: auto;
+  font-size: 3rem;
+}
