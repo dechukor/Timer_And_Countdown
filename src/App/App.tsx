@@ -1,5 +1,5 @@
 import "./App.css";
-import { TimerStatus, AppMode } from "../types.ts";
+import { TimerStatus } from "../types.ts";
 import { useState } from "react";
 import { Box } from "@mui/material";
 import { Timer, Header, Countdown, Footer } from "../components/index.ts";
@@ -8,16 +8,6 @@ import { Normalize } from "styled-normalize";
 
 export const App = () => {
   const [timerStatus, setTimerStatus] = useState<TimerStatus>("stop");
-  const [appMode, setAppMode] = useState<AppMode>("timer");
-
-  const changeTimerStatus = (status: TimerStatus) => {
-    setTimerStatus(status);
-  };
-
-  const changeAppMode = (mode: AppMode) => {
-    setAppMode(mode);
-    setTimerStatus("stop");
-  };
 
   return (
     <>
@@ -31,11 +21,9 @@ export const App = () => {
             width: "400px",
             minHeight: "400px",
             padding: "2rem",
-            // backgroundColor: "#F6F8FA",
-            // borderRadius: "1rem",
           }}
         >
-          <Header appMode={appMode} changeAppMode={changeAppMode} />
+          <Header setTimerStatus={setTimerStatus} />
           <Routes>
             <Route path="/" element={<Timer timerStatus={timerStatus} />} />
             <Route
@@ -43,15 +31,12 @@ export const App = () => {
               element={
                 <Countdown
                   timerStatus={timerStatus}
-                  changeTimerStatus={changeTimerStatus}
+                  setTimerStatus={setTimerStatus}
                 />
               }
             />
           </Routes>
-          <Footer
-            timerStatus={timerStatus}
-            changeTimerStatus={changeTimerStatus}
-          />
+          <Footer timerStatus={timerStatus} setTimerStatus={setTimerStatus} />
         </Box>
       </BrowserRouter>
     </>

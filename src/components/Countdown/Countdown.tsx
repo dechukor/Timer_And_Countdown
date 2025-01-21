@@ -1,5 +1,5 @@
 import { TimerStatus } from "../../types";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { InputStartCount } from "./InputStartCount";
 import { CircularProgress, Box } from "@mui/material";
 import style from "./countdown.module.css";
@@ -7,13 +7,10 @@ import finishSound from "../../assets/sounds/finish_countdown.mp3";
 
 type CountdownProps = {
   timerStatus: TimerStatus;
-  changeTimerStatus: (status: TimerStatus) => void;
+  setTimerStatus: (status: TimerStatus) => void;
 };
 
-export const Countdown = ({
-  timerStatus,
-  changeTimerStatus,
-}: CountdownProps) => {
+export const Countdown = ({ timerStatus, setTimerStatus }: CountdownProps) => {
   const [counter, setCounter] = useState(0);
   const [startCount, setStartCount] = useState(0);
 
@@ -22,19 +19,22 @@ export const Countdown = ({
     setStartCount(count);
   };
 
-  const getFormattedCounter = (counter: number) => {
-    let minutes = String(Math.floor(counter / 60));
-    let seconds = String(Math.floor(counter % 60));
+  const getFormattedCounter = useMemo(
+    () => (counter: number) => {
+      let minutes = String(Math.floor(counter / 60));
+      let seconds = String(Math.floor(counter % 60));
 
-    const addZero = (value: string) => `0${value}`;
+      const addZero = (value: string) => `0${value}`;
 
-    if (minutes.length === 1) minutes = addZero(minutes);
-    if (seconds.length === 1) seconds = addZero(seconds);
+      if (minutes.length === 1) minutes = addZero(minutes);
+      if (seconds.length === 1) seconds = addZero(seconds);
 
-    const formattedCounter = `${minutes}:${seconds}`;
+      const formattedCounter = `${minutes}:${seconds}`;
 
-    return formattedCounter;
-  };
+      return formattedCounter;
+    },
+    []
+  );
 
   useEffect(() => {
     if (timerStatus !== "start") {
@@ -48,7 +48,7 @@ export const Countdown = ({
     if (counter <= 0) {
       const soundFinishCount = new Audio(finishSound);
       soundFinishCount.play();
-      changeTimerStatus("pause");
+      setTimerStatus("pause");
     }
 
     return () => clearInterval(goCount);

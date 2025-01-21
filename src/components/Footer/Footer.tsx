@@ -4,13 +4,13 @@ import { TimerStatus } from "../../types";
 
 type FooterProps = {
   timerStatus: TimerStatus;
-  changeTimerStatus: (status: TimerStatus) => void;
+  setTimerStatus: (status: TimerStatus) => void;
 };
 
-export const Footer = ({ timerStatus, changeTimerStatus }: FooterProps) => {
-  const checkStatusPause = () => {
-    if (timerStatus === "pause") return changeTimerStatus("stop");
-    return changeTimerStatus("pause");
+export const Footer = ({ timerStatus, setTimerStatus }: FooterProps) => {
+  const handleClickStop = () => {
+    if (timerStatus === "pause") return setTimerStatus("stop");
+    return setTimerStatus("pause");
   };
 
   return (
@@ -27,8 +27,8 @@ export const Footer = ({ timerStatus, changeTimerStatus }: FooterProps) => {
         fullWidth
         onClick={
           timerStatus === "start"
-            ? () => changeTimerStatus("pause")
-            : () => changeTimerStatus("start")
+            ? () => setTimerStatus("pause")
+            : () => setTimerStatus("start")
         }
       >
         {timerStatus === "start" ? <Pause /> : <PlayArrow />}
@@ -39,7 +39,7 @@ export const Footer = ({ timerStatus, changeTimerStatus }: FooterProps) => {
         variant="contained"
         color="primary"
         fullWidth
-        onClick={() => checkStatusPause()}
+        onClick={() => handleClickStop()}
       >
         <Stop />
       </Button>

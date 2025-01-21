@@ -1,4 +1,6 @@
-import { AppMode } from "../../types.ts";
+import { AppMode, TimerStatus } from "../../types.ts";
+import { useState } from "react";
+import React from "react";
 import { SwitchTheme } from "../SwitchTheme/SwitchTheme";
 import { Box, Button } from "@mui/material";
 import TimerIcon from "@mui/icons-material/Timer";
@@ -7,12 +9,18 @@ import { NavLink } from "react-router-dom";
 import style from "./header.module.css";
 
 type HeaderProps = {
-  appMode: AppMode;
-  changeAppMode: (mode: AppMode) => void;
+  setTimerStatus: (status: TimerStatus) => void;
 };
 
-export const Header = ({ appMode, changeAppMode }: HeaderProps) => {
+export const Header = React.memo(({ setTimerStatus }: HeaderProps) => {
   console.log("Render header");
+
+  const [appMode, setAppMode] = useState<AppMode>("timer");
+
+  const handleClickMode = (mode: AppMode) => {
+    setAppMode(mode);
+    setTimerStatus("stop");
+  };
 
   return (
     <Box
@@ -34,7 +42,7 @@ export const Header = ({ appMode, changeAppMode }: HeaderProps) => {
           to="/"
           variant={appMode === "timer" ? "contained" : "text"}
           startIcon={<TimerIcon />}
-          onClick={() => changeAppMode("timer")}
+          onClick={() => handleClickMode("timer")}
         >
           Timer
         </Button>
@@ -43,7 +51,7 @@ export const Header = ({ appMode, changeAppMode }: HeaderProps) => {
           to="/countdown"
           variant={appMode === "countdown" ? "contained" : "text"}
           startIcon={<TimelapseIcon />}
-          onClick={() => changeAppMode("countdown")}
+          onClick={() => handleClickMode("countdown")}
         >
           Countdown
         </Button>
@@ -51,4 +59,4 @@ export const Header = ({ appMode, changeAppMode }: HeaderProps) => {
       <SwitchTheme />
     </Box>
   );
-};
+});

@@ -58,6 +58,8 @@ export const InputStartCount = ({
               style: {
                 textAlign: "center",
                 fontSize: "3rem",
+                fontFamily:
+                  "Inter, system-ui, Avenir, Helvetica, Arial, sans-serif",
               },
               min: "0",
               max: "720",
