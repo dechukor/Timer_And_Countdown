@@ -1,6 +1,5 @@
 import { TimerStatus } from "../../types";
 import { useEffect, useState } from "react";
-import style from "./timer.module.css";
 
 type TimerProps = {
   timerStatus: TimerStatus;
@@ -54,6 +53,5 @@ export const Timer = ({ timerStatus }: TimerProps) => {
   }, [timerStatus, startTime]);
 
   document.title = timer;
-
-  return <h1 className={style.timerText}>{timer}</h1>;
+  return <h1>{timer}</h1>;
 };

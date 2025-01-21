@@ -6,7 +6,6 @@ import { Box, Button } from "@mui/material";
 import TimerIcon from "@mui/icons-material/Timer";
 import TimelapseIcon from "@mui/icons-material/Timelapse";
 import { NavLink } from "react-router-dom";
-import style from "./header.module.css";
 
 type HeaderProps = {
   setTimerStatus: (status: TimerStatus) => void;
@@ -24,7 +23,6 @@ export const Header = React.memo(({ setTimerStatus }: HeaderProps) => {
 
   return (
     <Box
-      className={style.containerBox}
       sx={{
         display: "flex",
         justifyContent: "space-between",
