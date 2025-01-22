@@ -46,6 +46,7 @@ export const App = () => {
                       />
                     }
                   />
+                  <Route path="*" element={<Navigate to="timer" />} />
                 </Route>
               </Routes>
               <Footer
