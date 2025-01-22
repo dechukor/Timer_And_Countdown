@@ -32,7 +32,7 @@ export const App = () => {
               <Header setTimerStatus={setTimerStatus} />
               <Routes>
                 <Route path="/">
-                  <Route index element={<Navigate to="timer" replace />} />
+                  <Route index element={<Navigate to="timer" />} />
                   <Route
                     path="timer"
                     element={<Timer timerStatus={timerStatus} />}

@@ -37,7 +37,7 @@ export const Header = React.memo(({ setTimerStatus }: HeaderProps) => {
       >
         <Button
           component={NavLink}
-          to="/timer"
+          to="timer"
           variant={appMode === "timer" ? "contained" : "text"}
           startIcon={<TimerIcon />}
           onClick={() => handleClickMode("timer")}
@@ -46,7 +46,7 @@ export const Header = React.memo(({ setTimerStatus }: HeaderProps) => {
         </Button>
         <Button
           component={NavLink}
-          to="/countdown"
+          to="countdown"
           variant={appMode === "countdown" ? "contained" : "text"}
           startIcon={<TimelapseIcon />}
           onClick={() => handleClickMode("countdown")}
