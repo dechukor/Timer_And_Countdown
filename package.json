@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://dechukor.github.io/Timer_And_Countdown",
+  // "homepage": "https://dechukor.github.io/Timer_And_Countdownt/timer/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
