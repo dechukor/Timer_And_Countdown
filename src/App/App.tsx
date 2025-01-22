@@ -3,7 +3,7 @@ import { TimerStatus } from "../types.ts";
 import { useState } from "react";
 import { Box } from "@mui/material";
 import { Timer, Header, Countdown, Footer } from "../components/index.ts";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import { ThemeContext } from "../context.ts";
 import { themeLight, themeDark } from "./theme.ts";
@@ -31,16 +31,22 @@ export const App = () => {
             >
               <Header setTimerStatus={setTimerStatus} />
               <Routes>
-                <Route path="/" element={<Timer timerStatus={timerStatus} />} />
-                <Route
-                  path="/countdown"
-                  element={
-                    <Countdown
-                      timerStatus={timerStatus}
-                      setTimerStatus={setTimerStatus}
-                    />
-                  }
-                />
+                <Route path="/">
+                  <Route index element={<Navigate to="timer" replace />} />
+                  <Route
+                    path="timer"
+                    element={<Timer timerStatus={timerStatus} />}
+                  />
+                  <Route
+                    path="countdown"
+                    element={
+                      <Countdown
+                        timerStatus={timerStatus}
+                        setTimerStatus={setTimerStatus}
+                      />
+                    }
+                  />
+                </Route>
               </Routes>
               <Footer
                 timerStatus={timerStatus}
