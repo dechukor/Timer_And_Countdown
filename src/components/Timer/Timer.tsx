@@ -53,5 +53,5 @@ export const Timer = ({ timerStatus }: TimerProps) => {
   }, [timerStatus, startTime]);
 
   document.title = timer;
-  return <h1>{timer}</h1>;
+  return <h1 className="text-time">{timer}</h1>;
 };

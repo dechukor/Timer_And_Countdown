@@ -5,21 +5,23 @@ import { TextField, Box, Slider } from "@mui/material";
 type InputStartCount = {
   timerStatus: TimerStatus;
   counter: number;
-  changeCounter: (count: number) => void;
+  setCounter: (counter: number) => void;
+  setStartCount: (counter: number) => void;
 };
 
 export const InputStartCount = ({
   timerStatus,
   counter,
-  changeCounter,
+  setCounter,
+  setStartCount,
 }: InputStartCount) => {
-  const styleTextField = {
-    width: "8rem",
+  const changeCounter = (counter: number) => {
+    setCounter(counter);
+    setStartCount(counter);
   };
 
   const updateRangeSlider = (value: number) => {
     changeCounter(value);
-    // changeCounter(counter);
   };
 
   const changeInputSeconds = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,18 +54,17 @@ export const InputStartCount = ({
         }}
       >
         <TextField
-          sx={styleTextField}
-          InputProps={{
-            inputProps: {
-              style: {
-                textAlign: "center",
-                fontSize: "3rem",
-                fontFamily:
-                  "Inter, system-ui, Avenir, Helvetica, Arial, sans-serif",
-              },
-              min: "0",
-              max: "720",
+          sx={{ width: "8rem" }}
+          inputProps={{
+            style: {
+              textAlign: "center",
+              fontSize: "3rem",
+              fontFamily:
+                "Inter, system-ui, Avenir, Helvetica, Arial, sans-serif",
+              fontWeight: "700",
             },
+            min: "0",
+            max: "720",
           }}
           label="Minutes"
           type="number"
@@ -81,12 +82,15 @@ export const InputStartCount = ({
           :
         </Box>
         <TextField
-          sx={styleTextField}
+          sx={{ width: "8rem" }}
           InputProps={{
             inputProps: {
               style: {
                 textAlign: "center",
                 fontSize: "3rem",
+                fontFamily:
+                  "Inter, system-ui, Avenir, Helvetica, Arial, sans-serif",
+                fontWeight: "700",
               },
               min: "0",
               max: "59",

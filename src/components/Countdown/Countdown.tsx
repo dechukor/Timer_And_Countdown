@@ -14,10 +14,10 @@ export const Countdown = ({ timerStatus, setTimerStatus }: CountdownProps) => {
   const [counter, setCounter] = useState(0);
   const [startCount, setStartCount] = useState(0);
 
-  const changeCounter = (count: number): void => {
-    setCounter(count);
-    setStartCount(count);
-  };
+  // const changeCounter = (count: number): void => {
+  //   setCounter(count);
+  //   setStartCount(count);
+  // };
 
   const getFormattedCounter = useMemo(
     () => (counter: number) => {
@@ -63,12 +63,13 @@ export const Countdown = ({ timerStatus, setTimerStatus }: CountdownProps) => {
         <InputStartCount
           timerStatus={timerStatus}
           counter={counter}
-          changeCounter={changeCounter}
+          setCounter={setCounter}
+          setStartCount={setStartCount}
         />
       ) : (
         <Box className={style.container}>
           <div className={style.counterWrapper}>
-            <h1 className={style.counterText}>{countdown}</h1>
+            <h1 className={style.counterText + " text-time"}>{countdown}</h1>
           </div>
           <CircularProgress
             variant="determinate"
