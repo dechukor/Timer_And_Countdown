@@ -14,11 +14,6 @@ export const Countdown = ({ timerStatus, setTimerStatus }: CountdownProps) => {
   const [counter, setCounter] = useState(0);
   const [startCount, setStartCount] = useState(0);
 
-  // const changeCounter = (count: number): void => {
-  //   setCounter(count);
-  //   setStartCount(count);
-  // };
-
   const getFormattedCounter = useMemo(
     () => (counter: number) => {
       let minutes = String(Math.floor(counter / 60));
