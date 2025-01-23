@@ -3,7 +3,7 @@ import { TimerStatus } from "../types.ts";
 import { useState } from "react";
 import { Box } from "@mui/material";
 import { Timer, Header, Countdown, Footer } from "../components/index.ts";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import { ThemeContext } from "../context.ts";
 import { themeLight, themeDark } from "./theme.ts";
