@@ -33,11 +33,8 @@ export const App = () => {
               <Routes>
                 {/* <Route path="/"> */}
                 {/* <Route index element={<Navigate to="timer" />} /> */}
-                <Route path="*" element={<Navigate to="timer" replace />} />
-                <Route
-                  path="/timer"
-                  element={<Timer timerStatus={timerStatus} />}
-                />
+                {/* <Route path="*" element={<Navigate to="/timer" replace />} /> */}
+                <Route path="/" element={<Timer timerStatus={timerStatus} />} />
                 <Route
                   path="/countdown"
                   element={
