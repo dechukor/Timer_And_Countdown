@@ -31,23 +31,23 @@ export const App = () => {
             >
               <Header setTimerStatus={setTimerStatus} />
               <Routes>
-                <Route path="/">
-                  <Route index element={<Navigate to="timer" />} />
-                  <Route
-                    path="timer"
-                    element={<Timer timerStatus={timerStatus} />}
-                  />
-                  <Route
-                    path="countdown"
-                    element={
-                      <Countdown
-                        timerStatus={timerStatus}
-                        setTimerStatus={setTimerStatus}
-                      />
-                    }
-                  />
-                  <Route path="*" element={<Navigate to="timer" />} />
-                </Route>
+                {/* <Route path="/"> */}
+                {/* <Route index element={<Navigate to="timer" />} /> */}
+                <Route path="*" element={<Navigate to="timer" replace />} />
+                <Route
+                  path="/timer"
+                  element={<Timer timerStatus={timerStatus} />}
+                />
+                <Route
+                  path="/countdown"
+                  element={
+                    <Countdown
+                      timerStatus={timerStatus}
+                      setTimerStatus={setTimerStatus}
+                    />
+                  }
+                />
+                {/* </Route> */}
               </Routes>
               <Footer
                 timerStatus={timerStatus}
