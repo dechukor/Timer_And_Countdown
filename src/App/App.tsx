@@ -3,7 +3,7 @@ import { TimerStatus } from "../types.ts";
 import { useState } from "react";
 import { Box } from "@mui/material";
 import { Timer, Header, Countdown, Footer } from "../components/index.ts";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import { ThemeContext } from "../context.ts";
 import { themeLight, themeDark } from "./theme.ts";
@@ -16,7 +16,7 @@ export const App = () => {
     <>
       <ThemeContext.Provider value={{ isDarkTheme, setIsDarkTheme }}>
         <ThemeProvider theme={isDarkTheme ? themeDark : themeLight}>
-          <BrowserRouter>
+          <HashRouter>
             <Box
               className={isDarkTheme ? "dark" : "light"}
               sx={{
@@ -31,27 +31,29 @@ export const App = () => {
             >
               <Header setTimerStatus={setTimerStatus} />
               <Routes>
-                {/* <Route path="/"> */}
-                {/* <Route index element={<Navigate to="timer" />} /> */}
-                {/* <Route path="*" element={<Navigate to="/timer" replace />} /> */}
-                <Route path="/" element={<Timer timerStatus={timerStatus} />} />
-                <Route
-                  path="/countdown"
-                  element={
-                    <Countdown
-                      timerStatus={timerStatus}
-                      setTimerStatus={setTimerStatus}
-                    />
-                  }
-                />
-                {/* </Route> */}
+                <Route path="/">
+                  <Route index element={<Navigate to="timer" />} />
+                  <Route
+                    path="timer"
+                    element={<Timer timerStatus={timerStatus} />}
+                  />
+                  <Route
+                    path="countdown"
+                    element={
+                      <Countdown
+                        timerStatus={timerStatus}
+                        setTimerStatus={setTimerStatus}
+                      />
+                    }
+                  />
+                </Route>
               </Routes>
               <Footer
                 timerStatus={timerStatus}
                 setTimerStatus={setTimerStatus}
               />
             </Box>
-          </BrowserRouter>
+          </HashRouter>
         </ThemeProvider>
       </ThemeContext.Provider>
     </>
